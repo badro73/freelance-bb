@@ -9,9 +9,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Navbar from './components/Navbar';
 import Homepage from './pages/Homepage';
-import {HashRouter,Switch,Route,Router} from 'react-router-dom';
+import {HashRouter,Switch,Route,withRouter,Redirect} from 'react-router-dom';
 import Costumers from './pages/Costumers';
 import Invoices from './pages/Invoices';
+import Connexion from './pages/Connexion';
+import AuthentificationApi from './services/AuthentificationApi';
+import { useState } from 'react';
 
 
 // any CSS you import will output into a single css file (app.css in this case)
@@ -20,23 +23,36 @@ import '../css/app.css';
 // Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
 // import $ from 'jquery';
 
-console.log('hellow world');
-
+AuthentificationApi.setup();
 const App=()=>
-{ return <HashRouter> 
+{ 
+//isConnected= check if we are connected (check the availabilité of token)
+    const [isAuthenticated, setIsAuthenticated] = useState(AuthentificationApi.isConnected);
 
-<Navbar/> 
+    const NavbarWithRouter= withRouter(Navbar);
 
-    <main className="contrainer pt-5" >
+  const PrivateRout=({isAuthenticated,component,path})=>
+  {
+  return (isAuthenticated ? <Route path={path} component={component}/> : <Redirect to="/connexion"/>)
+  }  
+    
+    return (
+    <HashRouter> 
+
+<NavbarWithRouter logout={AuthentificationApi.logAout}  isAuthenticated={isAuthenticated} onLogin={setIsAuthenticated}/> 
+
+    <main className="container pt-5" >
         <Switch>
-            <Route path="/costumers" component={Costumers} />
-            <Route path="/invoices" component={Invoices} />
+            <Route path="/connexion" render={(props)=>( <Connexion onLogin={setIsAuthenticated} {...props} />  ) } />
+            <PrivateRout path="/costumers" component={Costumers} isAuthenticated={isAuthenticated}  />
+            <PrivateRout path="/invoices" component={Invoices} isAuthenticated={isAuthenticated} />
             <Route path="/" component={Homepage}/>
         </Switch>
     </main>
 
 
 </HashRouter>
+    )
 }
 
 
