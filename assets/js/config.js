@@ -1,4 +1,4 @@
-const URL_API="http://127.0.0.1:8000/api/";
+const URL_API=process.env.URL_API;
 
 const API_Customers=URL_API+"customers";
 const API_Invoices=URL_API+"invoices";
