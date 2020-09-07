@@ -73,10 +73,13 @@ const consumerget=async (id)=>
 
 return (
 <>
+{id != "new" &&
 <div className="mb-3 d-flex justify-content-between align-items-center">
-    <h1>Ajouter un costumer</h1>
+    <h1> modfiier un costumer</h1>
 </div>
-
+|| <div className="mb-3 d-flex justify-content-between align-items-center">
+    <h1> Ajouter un costumer</h1>
+</div>}
 <form onSubmit={handleSubmit} >
 
         <Field  type="text"  placeholder="nom de famille du client" handleChange={handleChange} value = {costumer.firstName} name="firstName"/>

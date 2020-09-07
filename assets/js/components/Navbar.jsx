@@ -9,7 +9,7 @@ const deconnected=()=>{
 
   logout();
   onLogin(false);
-  toast.dark("Vous etes déconnecté");
+  toast.dark("Vous êtes déconnecté");
   history.push('/connexion')
 }
 

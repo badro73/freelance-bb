@@ -102,9 +102,15 @@ const invoiceget=async (id)=>
     return (
 
         <div>
-            <div className="mb-3 d-flex justify-content-between align-items-center">
-              <h1>Ajouter une facture</h1>
-            </div>
+            {id != "new" &&
+                <div className="mb-3 d-flex justify-content-between align-items-center">
+                    <h1> modfiier une facture</h1>
+                </div>
+            || <div className="mb-3 d-flex justify-content-between align-items-center">
+                    <h1> Ajouter une facture</h1>
+                </div>
+            }
+          
             <form onSubmit={handleSubmit}>
                 <Field  type="number"  placeholder="montant de la facture" handleChange={handleChange} value = {invoice.amount} name="amount"/>
                 <Select name ="customer" value={invoice.customer} error ="" handleChange={handleChange}>
