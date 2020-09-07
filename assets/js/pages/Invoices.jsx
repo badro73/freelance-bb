@@ -4,6 +4,7 @@ import axios from 'axios';
 import Pagination from '../components/Pagination';
 import * as moment from 'moment';
 import InvoicesApi from '../services/InvoicesApi';
+import {Link } from 'react-router-dom';
 
 const STATUS_CLASSES = {
     PAID: "success",
@@ -77,6 +78,13 @@ const Invoices=()=>{
     return (
 
         <>
+
+    <div className="mb-3 d-flex justify-content-between align-items-center">
+        <h1>Liste des Factures</h1>
+            <Link to="/invoices/new" className="btn btn-primary">
+            Créer une facture
+            </Link>
+    </div>
         <div className="form-group">
             <input type="text" className="form-control" placeholder="Search" id="search" onChange={handleChange} value={search} />
         </div>
@@ -102,6 +110,7 @@ const Invoices=()=>{
                     <td>{ moment(data.sentAt).format('DD/MM/YYYY')}</td>
                     <td><span className={"badge badge-"+STATUS_CLASSES[data.status]} >{STATUS_LABELS[data.status]}</span></td>
                     <td>{data.amount}</td>
+                    <td>  <Link to={"/invoices/"+data.id} className="btn btn-primary"> Edite</Link></td>
                     </tr>
                     )
                     }

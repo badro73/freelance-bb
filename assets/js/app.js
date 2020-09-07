@@ -11,14 +11,21 @@ import Navbar from './components/Navbar';
 import Homepage from './pages/Homepage';
 import {HashRouter,Switch,Route,withRouter,Redirect} from 'react-router-dom';
 import Costumers from './pages/Costumers';
+import CostumerPage from './pages/CostumerPage';
+import InscriptionPage from './pages/InscriptionPage';
 import Invoices from './pages/Invoices';
 import Connexion from './pages/Connexion';
 import AuthentificationApi from './services/AuthentificationApi';
 import { useState } from 'react';
+import InvoicesPage from './pages/InvoicesPage';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+  
 
 
 // any CSS you import will output into a single css file (app.css in this case)
 import '../css/app.css';
+
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
 // import $ from 'jquery';
@@ -43,11 +50,15 @@ const App=()=>
 
     <main className="container pt-5" >
         <Switch>
+            <Route path="/inscription" component={InscriptionPage}/>
             <Route path="/connexion" render={(props)=>( <Connexion onLogin={setIsAuthenticated} {...props} />  ) } />
+            <PrivateRout path="/invoices/:id" component={InvoicesPage} isAuthenticated={isAuthenticated}  />
+            <PrivateRout path="/costomers/:id" component={CostumerPage} isAuthenticated={isAuthenticated}  />
             <PrivateRout path="/costumers" component={Costumers} isAuthenticated={isAuthenticated}  />
             <PrivateRout path="/invoices" component={Invoices} isAuthenticated={isAuthenticated} />
             <Route path="/" component={Homepage}/>
         </Switch>
+        <ToastContainer position={toast.POSITION.BOTTOM_LEFT}/>
     </main>
 
 

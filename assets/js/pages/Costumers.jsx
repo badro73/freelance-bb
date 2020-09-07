@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Pagination from '../components/Pagination';
 import ConsumerApi from '../services/ConsumerApi';
+import {Link } from 'react-router-dom';
 
 
 const Costumers=()=>{
@@ -23,8 +24,8 @@ const fetchCustomers= async () =>
   } 
   catch (error) 
   {
+  console.log(error);
   
-    
   }
   
 }
@@ -77,47 +78,52 @@ const currentData=filteredCustomers.slice(indexOfFirstPost,indexOfLastPost);
 
 return ( 
 <div>
-<h1>Liste Costumers</h1>
-
-<div className="form-group">
- 
-  <input type="text" className="form-control" placeholder="Search" id="search" onChange={handleChange} value={search} />
+<div className="mb-3 d-flex justify-content-between align-items-center">
+    <h1>Liste des clients</h1>
+        <Link to="/costomers/new" className="btn btn-primary">
+          Créer un client
+        </Link>
 </div>
 
-<table className="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">id</th>
-      <th scope="col">First Name </th>
-      <th scope="col">Last Name</th>
-      <th>Email</th>
-      <th>Entreprise</th>
-      <th className="text-center">Factures</th>
-      <th className="text-center">Montant total</th>
-      <th className="text-center"></th>
-
-
-    </tr>
-  </thead>
-  <tbody>
-  {currentData.map((currentData) => 
+  <div className="form-group">
   
-  <tr key={currentData.id} className="table">
-      <th scope="row">{currentData.id}</th>
-      <td>{currentData.firstName}</td>
-      <td>{currentData.lastName}</td>  
-      <td>{currentData.email}</td>
-      <td>{currentData.company}</td>
-      <td className="text-center">{currentData.invoices.length}</td> 
-      <td className="text-center">{currentData.totalAmount.toLocaleString()}</td>
-      <td className="text-center"> <button type="button" className="btn btn-danger" onClick={()=>{deleteConsumer(currentData.id)}} >Supprimer</button>  </td>
-  </tr>
-  )
-}
-   
-  </tbody>
-</table>
-<Pagination currentPage={currentPage} changeCurrentPage={changeCurrentPage} consumerPage={consumerPage} />
+    <input type="text" className="form-control" placeholder="Search" id="search" onChange={handleChange} value={search} />
+  </div>
+
+  <table className="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">First Name </th>
+        <th scope="col">Last Name</th>
+        <th>Email</th>
+        <th>Entreprise</th>
+        <th className="text-center">Factures</th>
+        <th className="text-center">Montant total</th>
+        <th className="text-center"></th>
+
+
+      </tr>
+    </thead>
+    <tbody>
+    {currentData.map((currentData) => 
+    
+    <tr key={currentData.id} className="table">
+        <th scope="row"> <Link to={"/costomers/"+currentData.id}>{currentData.id} </Link> </th>
+        <td>{currentData.firstName}</td>
+        <td>{currentData.lastName}</td>  
+        <td>{currentData.email}</td>
+        <td>{currentData.company}</td>
+        <td className="text-center">{currentData.invoices.length}</td> 
+        <td className="text-center">{currentData.totalAmount.toLocaleString()}</td>
+        <td className="text-center"> <button type="button" className="btn btn-danger" onClick={()=>{deleteConsumer(currentData.id)}} >Supprimer</button>  </td>
+    </tr>
+    )
+  }
+    
+    </tbody>
+  </table>
+  <Pagination currentPage={currentPage} changeCurrentPage={changeCurrentPage} consumerPage={consumerPage} />
 </div>
 
 );

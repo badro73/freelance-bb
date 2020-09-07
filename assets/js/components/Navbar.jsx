@@ -33,7 +33,7 @@ return (
     <ul className="navbar-nav ml-auto">
       {!isAuthenticated && <>
       <li className="nav-item">
-        <a className="nav nav-link">inscription</a>
+        <NavLink className="nav nav-link" to="/inscription">Inscription</NavLink>
       </li>
       <li className="nav-item">
         <NavLink  className="btn btn-success" to="/connexion" >Connexion</NavLink >
