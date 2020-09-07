@@ -6,6 +6,7 @@ import ConsumerApi from '../services/ConsumerApi';
 import {Link } from 'react-router-dom';
 import InvoicesApi from '../services/InvoicesApi';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const InvoicesPage=({match,history})=>{
 
@@ -46,13 +47,12 @@ const fetchCustomers= async () =>
 
    
     invoice.customer=Allconstumers[0].id;
-    console.log(invoice.customer);
     setClient(Allconstumers)
   } 
   catch (error) 
   {
-  console.log(error);
-  
+    toast.error("impossible de charger les clients");
+
   }
   
 }
@@ -62,13 +62,13 @@ const handleSubmit= async (event) =>
     event.preventDefault();
     if (id != "new")
     {
-        try {
+        try 
+        {
             const result= await InvoicesApi.invoicePut(invoice,id);
-            console.log(result);
+            toast.success("la facture a été modifier");
             history.push('/invoices/'+id)
-            
         } catch (error) {
-            console.log(error)
+            toast.error("impossible de modifier la facture");
         }
 
     }
@@ -76,10 +76,10 @@ const handleSubmit= async (event) =>
     {
         try {
             const result= await InvoicesApi.invoicePost(invoice);
-            console.log(result);
+            toast.success("la facture a été ajouté");
             history.replace('/invoices')
         } catch (error) {
-            console.log(error.response)
+            toast.error("impossible d'ajouté une facture");
         }
 
     }
@@ -92,11 +92,10 @@ const invoiceget=async (id)=>
         await axios.get('http://127.0.0.1:8000/api/invoices/'+id)
         .then(res => {
             const editinvoice={amount:res.data.amount,customer:res.data.customer.id,status:res.data.status};
-            
             setInvoice(editinvoice);
         })
     } catch (error) {
-        console.log(error)
+        toast.error("impossible de récupéré la facture");
     }
 }
 

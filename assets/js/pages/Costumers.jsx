@@ -4,6 +4,7 @@ import axios from 'axios';
 import Pagination from '../components/Pagination';
 import ConsumerApi from '../services/ConsumerApi';
 import {Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 
 const Costumers=()=>{
@@ -24,7 +25,7 @@ const fetchCustomers= async () =>
   } 
   catch (error) 
   {
-  console.log(error);
+    toast.error("impossible de chargé les client");
   
   }
   
@@ -37,10 +38,10 @@ const deleteConsumer= async (id)=>{
   setData(filtre)
   try {
     await ConsumerApi.delete(id)
-    .then(response => {console.log('c\'est ok')})
+    .then(response => { toast.info("le Client a été supprimer avec sucée");})
   } catch (error) {
     setData(cloneData)
-    console.log(error.response)
+    toast.error("impossible de supprimer le client");
   }
   
 }
@@ -52,7 +53,6 @@ function changeCurrentPage(page)
 
 const handleChange = event => {
   setSearch(event.target.value);
-  console.log(event.target.value);
   setCurrentPage(1);
 }
 
@@ -65,7 +65,6 @@ const filteredCustomers = data.filter(
 );
 
 const totaPage=filteredCustomers.length;
-console.log(totaPage);
 const consumerPerPage= Math.ceil(totaPage/consumerPage);
 
 

@@ -5,6 +5,7 @@ import Pagination from '../components/Pagination';
 import * as moment from 'moment';
 import InvoicesApi from '../services/InvoicesApi';
 import {Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const STATUS_CLASSES = {
     PAID: "success",
@@ -40,7 +41,7 @@ const Invoices=()=>{
             const invoicesData= await InvoicesApi.findAll()
             setData(invoicesData);
         } catch (error) {
-            console.log(error.response);
+            toast.error("impossible de charger les Facture");
         }
     }
 
@@ -51,7 +52,6 @@ const Invoices=()=>{
 
     const handleChange = event => {
         setSearch(event.target.value);
-        console.log(event.target.value);
         setCurrentPage(1);
       }
       

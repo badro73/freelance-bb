@@ -4,6 +4,7 @@ import Field from '../Form/Field';
 import axios from 'axios';
 import custumerAPI from '../services/custumerAPI';
 import {Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const CostumerPage=({match,history})=>{
 
@@ -35,11 +36,10 @@ const handleSubmit= async (event) => {
     {
         try {
             const result= await custumerAPI.custumerPut(costumer,id);
-            console.log(result);
+            toast.success("le Client a été modifier avec sucée");
             history.push('/costomers/'+id)
-            
         } catch (error) {
-            console.log(error)
+            toast.error("impossible de modifier le client");
         }
 
     }
@@ -47,12 +47,10 @@ const handleSubmit= async (event) => {
     {
         try {
             const result= await custumerAPI.custumerPost(costumer);
-            console.log(result);
+            toast.success("le Client à été ajouté avec succée");
             history.replace('/costumers')
-
-            
         } catch (error) {
-            console.log(error)
+            toast.error("impossible d'ajouter un client");
         }
 
     }
@@ -68,7 +66,7 @@ const consumerget=async (id)=>
             setCostumer(editCustumer);
         })
     } catch (error) {
-        console.log(error)
+        toast.error("le client n\'existe pas");
     }
 
 }

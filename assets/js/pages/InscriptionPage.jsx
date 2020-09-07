@@ -41,10 +41,7 @@ const handleSubmit= (event) =>
     }
     else
     {
-        toast.info(
-          "heck your password !"
-        );
-        console.log("Check your password");
+        toast.info("Check your password !");
     }
 }
 
@@ -52,15 +49,13 @@ const inscription=async(form)=>{
 
     try {
         await userApi.registre(form);
-        // TODO : Flash success
-        /*toast.success(
+        toast.success(
           "Vous êtes désormais inscrit, vous pouvez vous connecter !"
-        );*/
+        );
         history.replace("/connexion");
-      } catch (error) {
-          console.log(error.response.data.violations);  
-       
-        //toast.error("Des erreurs dans votre formulaire !");
+      } catch (error)
+      {
+        toast.error("Un champs n'est pas correctement rensigné");
       }
 
 }

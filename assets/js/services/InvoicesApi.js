@@ -22,7 +22,6 @@ function invoicePut (invoice,id)
 
 function invoicePost(invoice)
 {
-    console.log(invoice);
     return axios.post('http://127.0.0.1:8000/api/invoices',{...invoice,
         customer: '/api/customers/'+invoice.customer
       })

@@ -5,6 +5,7 @@ import jwt_decode from 'jwt-decode';
 import AuthentificationApi from '../services/AuthentificationApi';
 import { Redirect } from 'react-router';
 import Costumers from '../pages/Costumers';
+import { toast } from 'react-toastify';
 
 
 
@@ -43,15 +44,15 @@ const Connexion=({onLogin,history})=>{
                 axios.defaults.headers['Authorization'] = 'Bearer ' +token ;
 
                 onLogin(true);
-                //<Redirect to="/"/> 
+                toast.success("Vous êtes connecté !");
                 history.replace("/costumers")
                
             }
         } catch (error) {
 
-            console.log(error);
-            
-            
+            //console.log(error);
+            toast.error("Le nom d'utilisateur ou le mot de passe est incorrect" );
+
         }
 
 

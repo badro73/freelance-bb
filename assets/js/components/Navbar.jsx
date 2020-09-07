@@ -1,14 +1,15 @@
 import React from 'react';
 import {NavLink } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 
 const Navbar=({logout,isAuthenticated,onLogin,history})=>{
-
 
 const deconnected=()=>{
 
   logout();
   onLogin(false);
+  toast.dark("Vous etes déconnecté");
   history.push('/connexion')
 }
 
