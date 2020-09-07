@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_Users } from '../config/Config';
+import { API_Users } from '../config';
 
 
 function registre(form)

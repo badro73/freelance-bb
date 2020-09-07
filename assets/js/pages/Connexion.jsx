@@ -50,7 +50,7 @@ const Connexion=({onLogin,history})=>{
             }
         } catch (error) {
 
-            //console.log(error);
+            console.log(error);
             toast.error("Le nom d'utilisateur ou le mot de passe est incorrect" );
 
         }

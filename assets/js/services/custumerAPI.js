@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios';
-import { API_Customers } from '../config/Config';
+import { API_Customers } from '../config';
+
 
 
 

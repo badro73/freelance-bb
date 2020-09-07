@@ -7,7 +7,7 @@ import {Link } from 'react-router-dom';
 import InvoicesApi from '../services/InvoicesApi';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { API_Invoices } from '../config/Config';
+import { API_Invoices } from '../config';
 
 const InvoicesPage=({match,history})=>{
 

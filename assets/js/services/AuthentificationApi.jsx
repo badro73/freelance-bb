@@ -1,6 +1,6 @@
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
-import { API_Connexion } from '../config/Config';
+import { API_Connexion } from '../config';
 
 
 
