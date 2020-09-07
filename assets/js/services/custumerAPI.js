@@ -1,17 +1,18 @@
 import React from 'react'
 import axios from 'axios';
+import { API_Customers } from '../config/Config';
 
 
 
 function custumerPut (custumer,id)
 {
-    return axios.put('http://127.0.0.1:8000/api/customers/'+id,custumer)
+    return axios.put(API_Customers+'/'+id,custumer)
                 .then(response => response.data);
 }
 
 function custumerPost(custumer)
 {
-    return axios.post('http://127.0.0.1:8000/api/customers',custumer)
+    return axios.post(API_Customers,custumer)
     .then(response => response.data);
 
 }

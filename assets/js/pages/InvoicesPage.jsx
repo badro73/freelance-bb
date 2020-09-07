@@ -7,6 +7,7 @@ import {Link } from 'react-router-dom';
 import InvoicesApi from '../services/InvoicesApi';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { API_Invoices } from '../config/Config';
 
 const InvoicesPage=({match,history})=>{
 
@@ -89,7 +90,7 @@ const handleSubmit= async (event) =>
 const invoiceget=async (id)=>
 {
     try {
-        await axios.get('http://127.0.0.1:8000/api/invoices/'+id)
+        await axios.get(API_Invoices+'/'+id)
         .then(res => {
             const editinvoice={amount:res.data.amount,customer:res.data.customer.id,status:res.data.status};
             setInvoice(editinvoice);

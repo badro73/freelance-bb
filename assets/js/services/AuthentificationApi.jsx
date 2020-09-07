@@ -1,10 +1,12 @@
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
+import { API_Connexion } from '../config/Config';
+
 
 
 function Authentification (form)
 {
-    return axios.post('http://127.0.0.1:8000/api/login_check',form)
+    return axios.post(API_Connexion,form)
                 .then(response => response.data.token);
 }
 

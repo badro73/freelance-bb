@@ -1,10 +1,11 @@
 import axios from 'axios';
+import { API_Users } from '../config/Config';
 
 
 function registre(form)
 
 {
-    return axios.post('http://127.0.0.1:8000/api/users',form)
+    return axios.post(API_Users,form)
 }
 
 

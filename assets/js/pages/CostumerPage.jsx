@@ -5,6 +5,7 @@ import axios from 'axios';
 import custumerAPI from '../services/custumerAPI';
 import {Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { API_Customers } from '../config/Config';
 
 const CostumerPage=({match,history})=>{
 
@@ -60,7 +61,7 @@ const handleSubmit= async (event) => {
 const consumerget=async (id)=>
 {  
     try {
-        await axios.get('http://127.0.0.1:8000/api/customers/'+id)
+        await axios.get(API_Customers+'/'+id)
         .then(res => { 
             const editCustumer={firstName:res.data.firstName,lastName:res.data.lastName,email:res.data.email,company:res.data.company};
             setCostumer(editCustumer);

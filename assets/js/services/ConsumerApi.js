@@ -1,17 +1,18 @@
 import axios from "axios";
+import { API_Customers } from "../config/Config";
 
 
 
  function findAll()
 {
-    return  axios.get('http://127.0.0.1:8000/api/customers')
+    return  axios.get(API_Customers)
             .then(response =>response.data['hydra:member'])
    
 }
 
  function deleteCostumer(id)
 {
-    return axios.delete('http://127.0.0.1:8000/api/customers/'+id)
+    return axios.delete(API_Customers+'/'+id)
 }
 
 
