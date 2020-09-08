@@ -65,14 +65,17 @@ const fetchCustomers= async () =>
 const handleSubmit= async (event) => 
 {
     event.preventDefault();
+    setLoading(true)
     if (id != "new")
     {
         try 
         {
             const result= await InvoicesApi.invoicePut(invoice,id);
+            setLoading(false);
             toast.success("la facture a été modifier");
             history.push('/invoices/'+id)
         } catch (error) {
+            setLoading(false);
             toast.error("impossible de modifier la facture");
         }
 
@@ -81,9 +84,11 @@ const handleSubmit= async (event) =>
     {
         try {
             const result= await InvoicesApi.invoicePost(invoice);
+            setLoading(false);
             toast.success("la facture a été ajouté");
             history.replace('/invoices')
         } catch (error) {
+            setLoading(false);
             toast.error("impossible d'ajouté une facture");
         }
 

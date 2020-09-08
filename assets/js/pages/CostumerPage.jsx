@@ -34,14 +34,18 @@ const handleChange =(event) => {
 const handleSubmit= async (event) => {
     event.preventDefault();
     //Authentificaton();
+    setLoading(true)
     if (id != "new")
     {
+       
         try {
             const result= await custumerAPI.custumerPut(costumer,id);
+            setLoading(false)
             toast.success("le Client a été modifier avec succée");
             history.push('/costomers/'+id)
         } catch (error) {
             toast.error("impossible de modifier le client");
+            setLoading(false);
         }
 
     }
@@ -49,9 +53,11 @@ const handleSubmit= async (event) => {
     {
         try {
             const result= await custumerAPI.custumerPost(costumer);
+            setLoading(false)
             toast.success("le Client a été ajouté avec succée");
             history.replace('/costumers')
         } catch (error) {
+            setLoading(false)
             toast.error("impossible d'ajouter un client");
         }
 
