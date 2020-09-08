@@ -42,7 +42,7 @@ const deleteConsumer= async (id)=>{
   setData(filtre)
   try {
     await ConsumerApi.delete(id)
-    .then(response => { toast.info("le Client a été supprimer avec sucée");})
+    .then(response => { toast.info("le Client a été supprimer avec succée");})
   } catch (error) {
     setData(cloneData)
     toast.error("impossible de supprimer le client");

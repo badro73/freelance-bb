@@ -85,7 +85,7 @@ return (
 <>
 {id != "new" &&
 <div className="mb-3 d-flex justify-content-between align-items-center">
-    <h1> modfiier un customer</h1>
+    <h1> Modifier un customer</h1>
 </div>
 || <div className="mb-3 d-flex justify-content-between align-items-center">
     <h1> Ajouter un customer</h1>

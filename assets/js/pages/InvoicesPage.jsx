@@ -115,7 +115,7 @@ const invoiceget=async (id)=>
         <div>
             {id != "new" &&
                 <div className="mb-3 d-flex justify-content-between align-items-center">
-                    <h1> modfiier une facture</h1>
+                    <h1> Modifier une facture</h1>
                 </div>
             || <div className="mb-3 d-flex justify-content-between align-items-center">
                     <h1> Ajouter une facture</h1>
