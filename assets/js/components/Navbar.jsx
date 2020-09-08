@@ -37,13 +37,13 @@ return (
         <NavLink className="nav nav-link" to="/inscription">Inscription</NavLink>
       </li>
       <li className="nav-item">
-        <NavLink  className="btn btn-success" to="/connexion" >Connexion</NavLink >
+        <NavLink  className="btn btn-success btn-sm" to="/connexion" >Connexion</NavLink >
       </li>
       </> 
       }
       {isAuthenticated &&
       <li className="nav-item">
-        <button className="btn btn-danger" onClick={deconnected}>Déconnexion</button>
+        <button className="btn btn-danger btn-sm" onClick={deconnected}>Déconnexion</button>
       </li>
       }
     </ul>

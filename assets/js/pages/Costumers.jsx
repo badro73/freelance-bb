@@ -119,7 +119,7 @@ return (
         <td>{currentData.company}</td>
         <td className="text-center">{currentData.invoices.length}</td> 
         <td className="text-center">{currentData.totalAmount.toLocaleString()}</td>
-        <td className="text-center"> <button type="button" className="btn btn-danger" onClick={()=>{deleteConsumer(currentData.id)}} >Supprimer</button>  </td>
+        <td className="text-center"> <button type="button" className="btn btn-danger btn-sm" onClick={()=>{deleteConsumer(currentData.id)}} >Supprimer</button>  </td>
     </tr>
     )
   }

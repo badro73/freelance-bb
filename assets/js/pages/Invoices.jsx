@@ -117,7 +117,7 @@ const Invoices=()=>{
                     <td>{ moment(data.sentAt).format('DD/MM/YYYY')}</td>
                     <td><span className={"badge badge-"+STATUS_CLASSES[data.status]} >{STATUS_LABELS[data.status]}</span></td>
                     <td>{data.amount}</td>
-                    <td>  <Link to={"/invoices/"+data.id} className="btn btn-primary"> Edite</Link></td>
+                    <td>  <Link to={"/invoices/"+data.id} className="btn btn-primary btn-sm"> Edite</Link></td>
                     </tr>
                     )
                     }
