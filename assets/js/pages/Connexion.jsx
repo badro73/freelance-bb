@@ -6,6 +6,7 @@ import AuthentificationApi from '../services/AuthentificationApi';
 import { Redirect } from 'react-router';
 import Costumers from '../pages/Costumers';
 import { toast } from 'react-toastify';
+import { SemipolarLoading } from 'react-loadingg';
 
 
 
@@ -18,7 +19,7 @@ const Connexion=({onLogin,history})=>{
         username:'' ,
         password:'' 
       });
-    
+    const [loading, setLoading] = useState(false);
     const handleChange =(event) => {
 
         const value  = event.target.value;
@@ -34,8 +35,10 @@ const Connexion=({onLogin,history})=>{
     const Authentificaton= async()=>{
 
         try {
+            setLoading(true);
             const token = await AuthentificationApi.Authentification(form);
             var isConnected=checkToken(token);
+         
             if(isConnected)
             {
                 // permets de stocké le token d'application (inspect element)
@@ -50,6 +53,7 @@ const Connexion=({onLogin,history})=>{
             }
         } catch (error) {
             toast.error("Le nom d'utilisateur ou le mot de passe est incorrect" );
+            setLoading(false);
 
         }
 
@@ -82,6 +86,7 @@ function checkToken(token)
 return(
     <>
         <h1>Connexion</h1>
+        {loading && <SemipolarLoading/> }
         <form onSubmit={handleSubmit}>
             <div className="form-group">
             <label htmlFor="exampleInputEmail1">Email address</label>

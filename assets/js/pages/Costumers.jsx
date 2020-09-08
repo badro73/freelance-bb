@@ -5,22 +5,26 @@ import Pagination from '../components/Pagination';
 import ConsumerApi from '../services/ConsumerApi';
 import {Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { CommonLoading } from 'react-loadingg';
 
 
 const Costumers=()=>{
 
     const [data, setData] = useState([]);
     const [currentPage,setCurrentPage]= useState(1);
-    const [consumerPage,setConsumerPage]=useState(6);
+    const [consumerPage,setConsumerPage]=useState(3);
     const [search,setSearch]=useState("");
+    const [loading, setLoading] = useState(true);
     
 
-useEffect(() => {fetchCustomers()},[]);
+useEffect(() => {fetchCustomers()
+},[]);
 
 const fetchCustomers= async () =>
 {
   try {
     const Allconstumers = await ConsumerApi.findAll();
+    setLoading(false)
     setData(Allconstumers)
   } 
   catch (error) 
@@ -90,7 +94,7 @@ return (
   </div>
 
   <table className="table table-hover">
-    <thead>
+    {!loading && <thead>
       <tr>
         <th scope="col">id</th>
         <th scope="col">First Name </th>
@@ -103,7 +107,7 @@ return (
 
 
       </tr>
-    </thead>
+    </thead> }
     <tbody>
     {currentData.map((currentData) => 
     
@@ -123,6 +127,9 @@ return (
     </tbody>
   </table>
   <Pagination currentPage={currentPage} changeCurrentPage={changeCurrentPage} consumerPage={consumerPage} />
+
+  {loading && <CommonLoading />}
+
 </div>
 
 );

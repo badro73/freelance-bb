@@ -6,15 +6,18 @@ import custumerAPI from '../services/custumerAPI';
 import {Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { API_Customers } from '../config';
+import { CommonLoading } from 'react-loadingg';
 
 const CostumerPage=({match,history})=>{
 
 const [costumer, setCostumer]= useState({firstName:"",lastName:"",email:"",company:""});
+const [loading, setLoading] = useState(false);
 
 const { id = "new" } = match.params;
 useEffect(() => {
     if (id != "new")
     {    
+        setLoading(true)
         consumerget(id);
     }
     
@@ -31,8 +34,6 @@ const handleChange =(event) => {
 const handleSubmit= async (event) => {
     event.preventDefault();
     //Authentificaton();
-    console.log(costumer);
-
     if (id != "new")
     {
         try {
@@ -64,7 +65,9 @@ const consumerget=async (id)=>
         await axios.get(API_Customers+'/'+id)
         .then(res => { 
             const editCustumer={firstName:res.data.firstName,lastName:res.data.lastName,email:res.data.email,company:res.data.company};
+            setLoading(false)
             setCostumer(editCustumer);
+           
         })
     } catch (error) {
         toast.error("le client n\'existe pas");
@@ -76,10 +79,10 @@ return (
 <>
 {id != "new" &&
 <div className="mb-3 d-flex justify-content-between align-items-center">
-    <h1> modfiier un costumer</h1>
+    <h1> modfiier un customer</h1>
 </div>
 || <div className="mb-3 d-flex justify-content-between align-items-center">
-    <h1> Ajouter un costumer</h1>
+    <h1> Ajouter un customer</h1>
 </div>}
 <form onSubmit={handleSubmit} >
 
@@ -94,6 +97,7 @@ return (
         </div>
 
 </form>
+{loading && <CommonLoading />}
 
 </>
 

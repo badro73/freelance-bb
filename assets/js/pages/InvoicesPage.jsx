@@ -8,6 +8,7 @@ import InvoicesApi from '../services/InvoicesApi';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { API_Invoices } from '../config';
+import { CommonLoading } from 'react-loadingg';
 
 const InvoicesPage=({match,history})=>{
 
@@ -19,13 +20,17 @@ const [invoice,setInvoice] = useState({
     customer:"",
     status:"PAID"
 })
+const [loading, setLoading] = useState(false);
 
 const [client, setClient] = useState([]);
 
-useEffect(() => {fetchCustomers()},[]);
+useEffect(() => { setLoading(true);
+     fetchCustomers()},[]);
+
 useEffect(() => {
     if (id != "new")
     { 
+        setLoading(true)
         invoiceget(id);
     }
     
@@ -45,9 +50,8 @@ const fetchCustomers= async () =>
 {
   try {
     const Allconstumers = await ConsumerApi.findAll();
-
-   
     invoice.customer=Allconstumers[0].id;
+    setLoading(false)
     setClient(Allconstumers)
   } 
   catch (error) 
@@ -93,6 +97,7 @@ const invoiceget=async (id)=>
         await axios.get(API_Invoices+'/'+id)
         .then(res => {
             const editinvoice={amount:res.data.amount,customer:res.data.customer.id,status:res.data.status};
+            setLoading(false);
             setInvoice(editinvoice);
         })
     } catch (error) {
@@ -131,8 +136,9 @@ const invoiceget=async (id)=>
                  <button className="btn btn-primary" type="submit" value="Submit"> Enregistrer </button>
                  <Link to="/invoices" className="btn btn-link">
                  retour à la liste </Link>
-        </div>
-            </form>           
+                </div>
+            </form>  
+            {loading && <CommonLoading />}         
         </div>
     )
 

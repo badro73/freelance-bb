@@ -6,6 +6,8 @@ import * as moment from 'moment';
 import InvoicesApi from '../services/InvoicesApi';
 import {Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { CommonLoading } from 'react-loadingg';
+
 
 const STATUS_CLASSES = {
     PAID: "success",
@@ -26,8 +28,9 @@ const Invoices=()=>{
 
     const [data, setData] = useState([]);
     const [currentPage,setCurrentPage]= useState(1);
-    const [invoicesPage,setInvoicesPage]=useState(10);
+    const [invoicesPage,setInvoicesPage]=useState(5);
     const [search,setSearch]=useState("");
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
     
@@ -39,6 +42,7 @@ const Invoices=()=>{
     {
         try {
             const invoicesData= await InvoicesApi.findAll()
+            setLoading(false)
             setData(invoicesData);
         } catch (error) {
             toast.error("impossible de charger les Facture");
@@ -89,7 +93,7 @@ const Invoices=()=>{
             <input type="text" className="form-control" placeholder="Search" id="search" onChange={handleChange} value={search} />
         </div>
                 <table className="table table-hover">
-                <thead>
+                {!loading && ( <thead>
                     <tr>
                     <th scope="col">id.</th>
                     <th scope="col">firstName </th>
@@ -100,6 +104,9 @@ const Invoices=()=>{
                     
                     </tr>
                 </thead>
+                        )
+                }
+
                 <tbody>
 
                 {currentData.map((data) => 
@@ -117,7 +124,7 @@ const Invoices=()=>{
                 </tbody>
                 </table> 
                 <Pagination currentPage={currentPage} changeCurrentPage={changeCurrentPage} consumerPage={invoicesPage} />
-
+                {loading && <CommonLoading />}
         </>
 
 
