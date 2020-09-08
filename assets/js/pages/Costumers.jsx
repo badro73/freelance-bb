@@ -113,7 +113,7 @@ return (
     
     <tr key={currentData.id} className="table">
         <th scope="row"> <Link to={"/costomers/"+currentData.id}>{currentData.id} </Link> </th>
-        <td>{currentData.firstName}</td>
+        <td> <Link to={"/costomers/"+currentData.id}>{currentData.firstName}</Link></td>
         <td>{currentData.lastName}</td>  
         <td>{currentData.email}</td>
         <td>{currentData.company}</td>
