@@ -40,7 +40,7 @@ return (
         </div>
       
         <div className="col-lg-4">
-            <h4 className="text-uppercase mb-4">Take look</h4>
+            <h4 className="text-uppercase mb-4">Take a look</h4>
             <p className="lead mb-0"> 
                 <a href="https://www.linkedin.com/in/badreddine-boukhalfa-a33062146/" target="_blank"> Check My linkedin </a>
                 .
