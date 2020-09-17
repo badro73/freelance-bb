@@ -33,7 +33,7 @@ const handleChange =(event) => {
 const handleSubmit= (event) => 
 {
     event.preventDefault();
-    //Authentificaton();
+    //Authentificaton(); 
     //console.log(form);
     if(form.password===form.confirmpassword)
     {
