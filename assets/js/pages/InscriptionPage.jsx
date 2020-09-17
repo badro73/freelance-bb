@@ -34,7 +34,7 @@ const handleSubmit= (event) =>
 {
     event.preventDefault();
     //Authentificaton();
-    console.log(form);
+    //console.log(form);
     if(form.password===form.confirmpassword)
     {
         inscription(form);
