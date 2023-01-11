@@ -1,8 +1,7 @@
 # freelance-bb
 
 
-Développer une application pour les freelances, le but de cette application de gérer les clients et leurs factures avec une partie d’authenfication
-
+Une application disctiner aux les freelances, son but est de gérer les clients et leurs factures avec la partie d’authenfication
 
 cette application à été realisé avec : 
 
