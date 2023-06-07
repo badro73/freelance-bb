@@ -20,7 +20,7 @@ return (
         <p className="masthead-subheading font-weight-light mb-0">With - ApiPlatform - React.JS</p>
     </div>
   </header>
-  <div class="pt-5">   
+  <div className="pt-5">
   </div>
 <footer className="footer text-center">
 <div className="container">
@@ -50,8 +50,8 @@ return (
 </div>
 </footer>
 
-<div class="copyright py-4 text-center text-white">
-            <div class="container"><small>Copyright © Freelance-bb 2020</small></div>
+<div className="copyright py-4 text-center text-white">
+    <div className="container"><small>Copyright © Freelance-bb 2020</small></div>
 </div>
 
 </>

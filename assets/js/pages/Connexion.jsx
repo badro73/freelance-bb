@@ -9,11 +9,7 @@ import { toast } from 'react-toastify';
 import { SemipolarLoading } from 'react-loadingg';
 
 
-
-
 const Connexion=({onLogin,history})=>{
-
-
 
     const [form, setForm] = useState({
         username:'' ,
@@ -21,7 +17,7 @@ const Connexion=({onLogin,history})=>{
       });
     const [loading, setLoading] = useState(false);
     const handleChange =(event) => {
-
+ 
         const value  = event.target.value;
         const name = event.target.name;
 
@@ -39,11 +35,10 @@ const Connexion=({onLogin,history})=>{
             const token = await AuthentificationApi.Authentification(form);
             var isConnected=checkToken(token);
          
-            if(isConnected)
-            {
-                // permets de stocké le token d'application (inspect element)
+            if(isConnected) {
+                // permettre de stocker le token dans l'application (navigateur) (inspect element)
                 window.localStorage.setItem('authToken', token);
-                //ajouter token pour que je reste connecté et je peux récupérer les donnée 
+                //ajouter token pour que je reste connecté et je peux récupérer les données
                 axios.defaults.headers['Authorization'] = 'Bearer ' +token ;
 
                 onLogin(true);
@@ -60,59 +55,40 @@ const Connexion=({onLogin,history})=>{
 
     }
 
-function checkToken(token)
-{   
-    const decoded = jwt_decode(token);
-    if (token && decoded.exp)
+    function checkToken(token)
     {
-        if(new Date().getTime()<decoded.exp*1000)
-        {
+        const decoded = jwt_decode(token);
 
-            return true
-        }
-        else
-        {
+        if (token && decoded.exp) {
+            return new Date().getTime() < decoded.exp * 1000;
+        } else {
             return false
         }
     }
-    else
-    {
-        return false 
-    }
-}
 
 
+    return(
+        <>
+            <h1>Connexion</h1>
+            {loading && <SemipolarLoading/> }
+            <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                <label htmlFor="exampleInputEmail1">Email address</label>
+                <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="username" value={form.username}  onChange={handleChange}/>
+                <small id="username" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div className="form-group">
+                <label htmlFor="exampleInputPassword1">Password</label>
+                <input type="password" className="form-control" id="password" placeholder="Password" name="password" value={form.password}  onChange={handleChange}/>
+                </div>
 
-return(
-    <>
-        <h1>Connexion</h1>
-        {loading && <SemipolarLoading/> }
-        <form onSubmit={handleSubmit}>
-            <div className="form-group">
-            <label htmlFor="exampleInputEmail1">Email address</label>
-            <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="username" value={form.username}  onChange={handleChange}/>
-            <small id="username" className="form-text text-muted">We'll never share your email with anyone else.</small>
-            </div>
-            <div className="form-group">
-            <label htmlFor="exampleInputPassword1">Password</label>
-            <input type="password" className="form-control" id="password" placeholder="Password" name="password" value={form.password}  onChange={handleChange}/>
-            </div>
+                <div>
+                     <button className="btn btn-primary" type="submit" value="Submit"> Connexion </button>
+                </div>
+            </form>
 
-            <div>
-                 <button className="btn btn-primary" type="submit" value="Submit"> Connexion </button>
-            </div>
-        </form>
-
-    </>
-
-
-)
-
-
-
-
-
+        </>
+    )
 
 }
-
 export default Connexion;

@@ -2,8 +2,6 @@ import React from 'react';
 import {NavLink } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-
-
 const Navbar=({logout,isAuthenticated,onLogin,history})=>{
 
 const deconnected=()=>{
@@ -38,7 +36,7 @@ return (
         <NavLink className="nav nav-link" to="/inscription">Inscription</NavLink>
       </li>
       <li className="nav-item">
-        <NavLink  className="btn btn-success btn-sm" to="/connexion" >Connexion</NavLink >
+        <NavLink  className="btn btn-success btn-sm" to="/connexion" >Connexion</NavLink>
       </li>
       </> 
       }

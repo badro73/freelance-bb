@@ -72,7 +72,9 @@ Encore
     .enableReactPreset()
     //.addEntry('admin', './assets/js/admin.js')
     Encore.configureDefinePlugin(options => {
-        options['process.env'].URL_API = process.env.URL_API;
+        console.log(options);
+        console.log(process.env.URL_API + ' baba')
+        //options['process.env'].NODE_ENV = process.env.URL_API;
       });
 ;
 

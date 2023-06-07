@@ -24,8 +24,6 @@ const STATUS_CLASSES = {
 
 const Invoices=()=>{
 
-
-
     const [data, setData] = useState([]);
     const [currentPage,setCurrentPage]= useState(1);
     const [invoicesPage,setInvoicesPage]=useState(5);

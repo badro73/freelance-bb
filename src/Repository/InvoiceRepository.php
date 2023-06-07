@@ -6,6 +6,7 @@ use App\Entity\Invoice;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @method Invoice|null find($id, $lockMode = null, $lockVersion = null)
@@ -20,7 +21,7 @@ class InvoiceRepository extends ServiceEntityRepository
         parent::__construct($registry, Invoice::class);
     }
 
-    public function findNextChrono(User $user)
+    public function findNextChrono(UserInterface $user)
     {
         try {
 

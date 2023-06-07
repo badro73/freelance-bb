@@ -43,7 +43,7 @@ const App=()=>
 
   const PrivateRout=({isAuthenticated,component,path})=>
   {
-  return (isAuthenticated ? <Route path={path} component={component}/> : <Redirect to="/connexion"/>)
+        return (isAuthenticated ? <Route path={path} component={component}/> : <Redirect to="/connexion"/>)
   }  
     
     return (

@@ -6,7 +6,7 @@ use App\Entity\Customer;
 use App\Entity\Invoice;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Faker\Factory;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -24,7 +24,7 @@ class AppFixtures extends Fixture
         $this->encoder = $encoder;
     }
 
-    public function load(ObjectManager $manager)
+    public function load(EntityManagerInterface|\Doctrine\Persistence\ObjectManager $manager)
     {
         $faker = Factory::create('fr_FR');
 
